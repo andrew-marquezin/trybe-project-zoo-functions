@@ -15,11 +15,7 @@ const getRelatedEmployees = (managerId) => {
     throw new Error('O id inserido não é de uma pessoa colaboradora gerente!');
   }
   const managed = data.employees.filter((employee) => employee.managers.includes(managerId));
-  const managedArray = [];
-  managed.forEach((element) => {
-    const { firstName, lastName } = element;
-    managedArray.push([firstName, lastName].join(' '));
-  });
+  const managedArray = managed.map((person) => `${person.firstName} ${person.lastName}`);
   return managedArray;
 };
 
